@@ -2,7 +2,7 @@ require('dotenv').config();
 let express = require('express');
 let app = express();
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   let string = req.method + " " + req.path + " - " + req.ip;
   console.log(string);
   next()
@@ -23,6 +23,16 @@ app.get("/json", function (req, res) {
   }
 });
 
+app.get("/now", function (req, res, next) {
+  req.time = new Date().toString();
+  next();
+},
+  function (req, res) {
+    res.send({
+      time: req.time
+    });
+  }
+);
 // console.log("Hello World");
 
 module.exports = app;
