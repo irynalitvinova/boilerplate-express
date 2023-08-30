@@ -44,12 +44,14 @@ app.get("/:word/echo", function (req, res) {
     echo: word
   });
 });
-app.post("/name", function (req, res) {
+app.get("/name", function (req, res) {
   let { first: firstName, last: lastName } = req.query;
   res.json({
     name: `${firstName} ${lastName}`
   });
 });
+
+
 
 // console.log("Hello World");
 
