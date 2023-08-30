@@ -51,7 +51,11 @@ app.get("/name", function (req, res) {
   });
 });
 
-
+app.post("/name", function(req, res) {
+  // Handle the data in the request
+  let string = req.body.first + " " + req.body.last;
+  res.json({ name: string });
+});
 
 // console.log("Hello World");
 
