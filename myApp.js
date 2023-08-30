@@ -1,6 +1,13 @@
 require('dotenv').config();
 let express = require('express');
 let app = express();
+
+app.use(function(req, res, next) {
+  let string = req.method + " " + req.path + " - " + req.ip;
+  console.log(string);
+  next()
+});
+
 app.use(express.static(__dirname + "/public"));
 // Normal usage
 app.use("/public", express.static(__dirname + "/public"));
@@ -15,8 +22,7 @@ app.get("/json", function (req, res) {
     res.json({ "message": "Hello json" });
   }
 });
-console.log("Hello World");
 
-
+// console.log("Hello World");
 
 module.exports = app;
