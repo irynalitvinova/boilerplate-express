@@ -15,6 +15,7 @@ app.use("/public", express.static(__dirname + "/public"));
 app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
+
 app.get("/json", function (req, res) {
   if (process.env.MESSAGE_STYLE === "uppercase") {
     res.json({ "message": "HELLO JSON" });
@@ -40,6 +41,13 @@ app.get("/:word/echo", function (req, res) {
     echo: word
   });
 });
+app.post("/name", function (req, res) {
+  let { first: firstName, last: lastName } = req.query;
+  res.json({
+    name: `${firstName} ${lastName}`
+  });
+});
+
 // console.log("Hello World");
 
 module.exports = app;
